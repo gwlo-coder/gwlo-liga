@@ -1,6 +1,10 @@
 import { Suspense } from 'react'
 import AdminMatchEditClient from './AdminMatchDetailContent'
 
+export async function generateStaticParams() {
+  return []
+}
+
 interface PageProps {
   params: Promise<{ id: string }>
 }
