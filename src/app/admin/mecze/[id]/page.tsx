@@ -1,22 +1,21 @@
 import { Suspense } from 'react'
 import AdminMatchEditClient from './AdminMatchDetailContent'
 
-export async function generateStaticParams() {
-  // Next.js 16 z cacheComponents wymaga chociaż jednego elementu
-  return [{ id: '1' }]
-}
-
 interface PageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function Page({ params }: PageProps) {
-  const resolvedParams = await params;
-  const matchIdNum = parseInt(resolvedParams.id, 10);
-
+export default function Page({ params }: PageProps) {
   return (
     <Suspense fallback={<div className="p-6 text-center text-slate-500 font-medium">Ładowanie edycji meczu...</div>}>
-      <AdminMatchEditClient matchId={matchIdNum} />
+      <MatchWrapper params={params} />
     </Suspense>
   )
+}
+
+async function MatchWrapper({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params
+  const matchIdNum = parseInt(resolvedParams.id, 10)
+
+  return <AdminMatchEditClient matchId={matchIdNum} />
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 import Link from 'next/link'
-import { Calendar, Edit3, ArrowRight, LogOut, ShieldCheck } from 'lucide-react'
+import { Calendar, Edit3, ArrowRight, LogOut, ShieldCheck, Activity } from 'lucide-react'
 
 type Team = {
   id: number
@@ -24,18 +24,33 @@ type Match = {
 export default function AdminMatchesPage() {
   const [matches, setMatches] = useState<Match[]>([])
   const [loading, setLoading] = useState(true)
+  const [dbStatus, setDbStatus] = useState<'checking' | 'online' | 'offline'>('checking')
   const router = useRouter()
 
   useEffect(() => {
-    // Sprawdzenie logowania
-    const isLogged = localStorage.getItem('glo_admin_logged')
-    if (!isLogged) {
-      router.push('/admin/login')
-      return
-    }
+    async function checkAuthAndFetchData() {
+      const isLoggedLocal = localStorage.getItem('glo_admin_logged')
+      const { data } = await supabase.auth.getSession()
 
-    async function fetchMatches() {
-      const { data, error } = await supabase
+      if (!isLoggedLocal && !data.session) {
+        router.push('/admin/login')
+        return
+      }
+
+      // Sprawdzanie stanu połączenia z bazą
+      try {
+        const { error: pingError } = await supabase.from('matches').select('id').limit(1)
+        if (pingError) {
+          setDbStatus('offline')
+        } else {
+          setDbStatus('online')
+        }
+      } catch {
+        setDbStatus('offline')
+      }
+
+      // Pobieranie meczów z bazy
+      const { data: matchesData, error: matchesError } = await supabase
         .from('matches')
         .select(`
           id,
@@ -47,18 +62,34 @@ export default function AdminMatchesPage() {
         `)
         .order('round', { ascending: true })
 
-      if (!error && data) {
-        setMatches(data)
+      if (!matchesError && matchesData) {
+        setMatches(matchesData)
       }
       setLoading(false)
     }
 
-    fetchMatches()
+    checkAuthAndFetchData()
   }, [router])
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem('glo_admin_logged')
+    await supabase.auth.signOut()
+
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i)
+      if (key && (key.startsWith('sb-') || key.includes('auth'))) {
+        localStorage.removeItem(key)
+      }
+    }
+
+    document.cookie.split(';').forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, '')
+        .replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`)
+    })
+
     router.push('/admin/login')
+    router.refresh()
   }
 
   const getTeamName = (teamObj?: Team | Team[] | null) => {
@@ -70,18 +101,30 @@ export default function AdminMatchesPage() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col justify-between">
       <main className="max-w-[1000px] mx-auto px-6 py-10 space-y-8 w-full">
         
-        {/* Nagłówek panelu z wylogowaniem */}
+        {/* Nagłówek panelu */}
         <div className="bg-white border border-slate-200/80 rounded-3xl p-8 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 shadow-2xs shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-[10px] font-bold text-sky-600 uppercase tracking-widest bg-sky-50 border border-sky-100 px-3 py-1 rounded-md">
-                Strefa Administratora
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold text-sky-600 uppercase tracking-widest bg-sky-50 border border-sky-100 px-3 py-1 rounded-md">
+                  Strefa Administratora
+                </span>
+                
+                {/* Wskaźnik statusu API / Bazy Supabase na żywo */}
+                <div className="flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-[10px] font-bold text-slate-700">
+                  <Activity className="w-3 h-3 text-sky-600" />
+                  <span>Supabase:</span>
+                  {dbStatus === 'checking' && <span className="text-amber-600">Sprawdzanie...</span>}
+                  {dbStatus === 'online' && <span className="text-emerald-600 flex items-center gap-1">● Online</span>}
+                  {dbStatus === 'offline' && <span className="text-rose-600 flex items-center gap-1">● Awaria</span>}
+                </div>
+              </div>
+
               <h1 className="text-xl lg:text-2xl font-black text-slate-900 tracking-tight mt-1.5">
-                Zarządzanie Meczami
+                Witaj w panelu! 👋
               </h1>
             </div>
           </div>
@@ -95,7 +138,7 @@ export default function AdminMatchesPage() {
             </Link>
             <button 
               onClick={handleLogout}
-              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 font-bold rounded-2xl text-xs transition-colors"
+              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 font-bold rounded-2xl text-xs transition-colors cursor-pointer"
             >
               <LogOut className="w-4 h-4" /> Wyloguj
             </button>

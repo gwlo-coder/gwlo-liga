@@ -2,36 +2,39 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { Lock, User, ArrowRight, AlertCircle } from 'lucide-react'
+import { supabase } from '@/lib/supabaseClient'
+import { Lock, AtSign, ArrowRight, AlertCircle } from 'lucide-react'
 
 export default function AdminLoginPage() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
-    // Proste sprawdzenie danych root / root
-    if (username === 'root' && password === 'root') {
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (authError) {
+      setError('Błędny e-mail lub hasło do panelu administratora.')
+      setLoading(false)
+    } else {
+      // Awaryjny znacznik blokujący cofanie, żeby router od razu przepuścił
       localStorage.setItem('glo_admin_logged', 'true')
       router.push('/admin')
-    } else {
-      setError('Błędny login lub hasło! (użyj root / root)')
-      setLoading(false)
+      router.refresh()
     }
   }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col justify-between">
-      
-
       <main className="max-w-[440px] mx-auto px-6 py-20 w-full flex flex-col justify-center">
         <div className="bg-white border border-slate-200/80 rounded-3xl p-8 shadow-sm space-y-6">
           
@@ -40,7 +43,7 @@ export default function AdminLoginPage() {
               <Lock className="w-6 h-6" />
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight">Panel Administratora</h1>
-            <p className="text-xs text-slate-400 font-medium">Zaloguj się danymi administratora GLO</p>
+            <p className="text-xs text-slate-400 font-medium">Zaloguj się kontem autoryzowanym w Supabase</p>
           </div>
 
           {error && (
@@ -51,15 +54,15 @@ export default function AdminLoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Login</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Adres E-mail</label>
               <div className="relative">
-                <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+                <AtSign className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                 <input 
-                  type="text"
+                  type="email"
                   required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="root"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@gwlo.eu"
                   className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-medium text-slate-900 focus:outline-none focus:border-sky-500 transition-colors"
                 />
               </div>
@@ -83,7 +86,7 @@ export default function AdminLoginPage() {
             <button 
               type="submit"
               disabled={loading}
-              className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-sm disabled:opacity-50"
+              className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
             >
               {loading ? 'Logowanie...' : 'Zaloguj się'} <ArrowRight className="w-4 h-4" />
             </button>
@@ -91,8 +94,6 @@ export default function AdminLoginPage() {
 
         </div>
       </main>
-
-      
     </div>
   )
 }

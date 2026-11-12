@@ -1,3 +1,4 @@
+
 import Link from 'next/link'
 import { Trophy, Mail, MapPin, Whistle, ArrowUp } from 'lucide-react'
 
@@ -16,9 +17,11 @@ export default function Footer() {
           {/* Kolumna 1: O projekcie */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-sky-600 flex items-center justify-center font-bold text-white text-base shadow-sm">
-                GW
-              </div>
+<img 
+            src="/teams/logo.png" 
+            alt="GWLO Logo" 
+            className="w-10 h-10 object-contain rounded-xl group-hover:scale-105 transition-transform" 
+          />
               <div className="flex flex-col">
                 <span className="font-extrabold text-lg tracking-tight text-white leading-none">
                   gwlo.eu
