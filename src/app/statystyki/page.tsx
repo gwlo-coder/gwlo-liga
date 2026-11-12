@@ -9,14 +9,23 @@ import Link from 'next/link'
 
 type Scorer = {
   id: number
-  first_name: string
-  last_name: string
   goals: number
-  team: {
+  players: {
+    id: number
+    first_name: string
+    last_name: string
+  } | {
+    id: number
+    first_name: string
+    last_name: string
+  }[] | null
+  teams: {
     id: number
     name: string
-    short_name: string
-  } | null
+  } | {
+    id: number
+    name: string
+  }[] | null
 }
 
 export default function StatystykiPage() {
@@ -26,13 +35,19 @@ export default function StatystykiPage() {
   useEffect(() => {
     async function fetchScorers() {
       const { data, error } = await supabase
-        .from('players')
+        .from('player_seasons')
         .select(`
           id,
-          first_name,
-          last_name,
           goals,
-          team:teams(id, name, short_name)
+          players:player_id (
+            id,
+            first_name,
+            last_name
+          ),
+          teams:team_id (
+            id,
+            name
+          )
         `)
         .order('goals', { ascending: false })
 
@@ -44,6 +59,22 @@ export default function StatystykiPage() {
 
     fetchScorers()
   }, [])
+
+  const getPlayerInfo = (playersRel: Scorer['players']) => {
+    if (!playersRel) return { id: 0, name: 'Nieznany zawodnik' }
+    const p = Array.isArray(playersRel) ? playersRel[0] : playersRel
+    if (!p) return { id: 0, name: 'Nieznany zawodnik' }
+    return {
+      id: p.id,
+      name: `${p.first_name || ''} ${p.last_name || ''}`.trim()
+    }
+  }
+
+  const getTeamInfo = (teamsRel: Scorer['teams']) => {
+    if (!teamsRel) return null
+    const t = Array.isArray(teamsRel) ? teamsRel[0] : teamsRel
+    return t || null
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col justify-between">
@@ -104,11 +135,13 @@ export default function StatystykiPage() {
                       </td>
                     </tr>
                   ) : (
-                    scorers.map((player, index) => {
+                    scorers.map((item, index) => {
                       const rank = index + 1
+                      const playerInfo = getPlayerInfo(item.players)
+                      const teamInfo = getTeamInfo(item.teams)
 
                       return (
-                        <tr key={player.id} className="hover:bg-slate-50/80 transition-colors">
+                        <tr key={item.id} className="hover:bg-slate-50/80 transition-colors">
                           
                           {/* Pozycja */}
                           <td className="py-4 px-3 text-center">
@@ -121,17 +154,17 @@ export default function StatystykiPage() {
 
                           {/* Zawodnik */}
                           <td className="py-4 px-4 font-bold text-slate-900">
-                            <Link href={`/zawodnicy/${player.id}`} className="hover:text-sky-600 transition-colors">
-                              {player.first_name} {player.last_name}
+                            <Link href={`/zawodnik/${playerInfo.id}`} className="hover:text-sky-600 transition-colors">
+                              {playerInfo.name}
                             </Link>
                           </td>
 
                           {/* Klub */}
                           <td className="py-4 px-4 text-slate-600">
-                            {player.team ? (
-                              <Link href={`/zespoly/${player.team.id}`} className="hover:text-sky-600 transition-colors inline-flex items-center gap-1.5 font-semibold text-xs">
+                            {teamInfo ? (
+                              <Link href={`/zespoly/${teamInfo.id}`} className="hover:text-sky-600 transition-colors inline-flex items-center gap-1.5 font-semibold text-xs">
                                 <Shield className="w-3.5 h-3.5 text-sky-500" />
-                                <span>{player.team.name}</span>
+                                <span>{teamInfo.name}</span>
                               </Link>
                             ) : (
                               <span className="text-slate-400">Brak klubu</span>
@@ -141,7 +174,7 @@ export default function StatystykiPage() {
                           {/* Liczba bramek */}
                           <td className="py-4 px-6 text-center font-black text-sky-600 text-base font-mono">
                             <span className="bg-sky-50 px-3.5 py-1 rounded-xl border border-sky-100">
-                              {player.goals}
+                              {item.goals}
                             </span>
                           </td>
 
