@@ -250,7 +250,7 @@ export default function PlayerProfileContent({
                     </div>
                   </div>
 
-                  {/* Informacje o dacie i boisku */}
+                  {/* Informacje o dacie i boisku s*/}
                   <div className="space-y-2 pt-2 border-t border-slate-100 text-xs">
                     <div className="flex items-center gap-2 text-slate-500">
                       <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
