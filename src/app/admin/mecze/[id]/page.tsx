@@ -2,7 +2,8 @@ import { Suspense } from 'react'
 import AdminMatchEditClient from './AdminMatchDetailContent'
 
 export async function generateStaticParams() {
-  return []
+  // Next.js 16 z cacheComponents wymaga chociaż jednego elementu
+  return [{ id: '1' }]
 }
 
 interface PageProps {
