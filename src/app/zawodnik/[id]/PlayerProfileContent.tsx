@@ -220,7 +220,7 @@ export default function PlayerProfileContent({
                     <div className="flex flex-col items-center flex-1 text-center space-y-2">
                       <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 shadow-2xs">
                         {getTeamLogo(lastMatch.home_team) ? (
-                          <img src={getTeamLogo(lastMatch.home_team)} alt="" className="w-full h-full object-contain" />
+                          <img src={getTeamLogo(lastMatch.home_team) ?? ""} alt="" className="w-full h-full object-contain" />
                         ) : (
                           <span className="text-xs font-black text-slate-400">GOS</span>
                         )}
@@ -239,7 +239,7 @@ export default function PlayerProfileContent({
                     <div className="flex flex-col items-center flex-1 text-center space-y-2">
                       <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 shadow-2xs">
                         {getTeamLogo(lastMatch.away_team) ? (
-                          <img src={getTeamLogo(lastMatch.away_team)} alt="" className="w-full h-full object-contain" />
+                          <img src={getTeamLogo(lastMatch.away_team) ?? ""} alt="" className="w-full h-full object-contain" />
                         ) : (
                           <span className="text-xs font-black text-slate-400">GOS</span>
                         )}
@@ -291,7 +291,7 @@ export default function PlayerProfileContent({
                     <div className="flex flex-col items-center flex-1 text-center space-y-2">
                       <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 shadow-2xs">
                         {getTeamLogo(nextMatch.home_team) ? (
-                          <img src={getTeamLogo(nextMatch.home_team)} alt="" className="w-full h-full object-contain" />
+                          <img src={getTeamLogo(nextMatch.home_team) ?? ""} alt="" className="w-full h-full object-contain" />
                         ) : (
                           <span className="text-xs font-black text-slate-400">GOS</span>
                         )}
@@ -310,7 +310,7 @@ export default function PlayerProfileContent({
                     <div className="flex flex-col items-center flex-1 text-center space-y-2">
                       <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 shadow-2xs">
                         {getTeamLogo(nextMatch.away_team) ? (
-                          <img src={getTeamLogo(nextMatch.away_team)} alt="" className="w-full h-full object-contain" />
+                          <img src={getTeamLogo(nextMatch.away_team) || ""} alt="" className="w-full h-full object-contain" />
                         ) : (
                           <span className="text-xs font-black text-slate-400">GOS</span>
                         )}
