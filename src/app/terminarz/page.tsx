@@ -70,7 +70,7 @@ export default function TerminarzPage() {
               Terminarz i Wyniki GWLO
             </h1>
             <p className="text-xs text-slate-500 font-medium max-w-2xl">
-              Sprawdź daty, godziny oraz wyniki wszystkich spotkań Gorzowskiej Ligi Osiedlowej.
+              Sprawdź daty, godziny oraz wyniki wszystkich spotkań.
             </p>
           </div>
 

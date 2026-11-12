@@ -89,10 +89,10 @@ export default function StatystykiPage() {
               <Flame className="w-3.5 h-3.5" /> Klasyfikacja Indywidualna
             </div>
             <h1 className="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">
-              Złoty But GWLO – Najlepsi Strzelcy
+              Złoty But
             </h1>
             <p className="text-xs text-slate-500 font-medium max-w-2xl">
-              Sprawdź klasyfikację snajperów Gorzowskiej Ligi Osiedlowej. Statystyki aktualizują się automatycznie po wpisaniu wyników meczów.
+              Sprawdź klasyfikację snajperów.
             </p>
           </div>
 
@@ -106,7 +106,7 @@ export default function StatystykiPage() {
                 </div>
                 <div>
                   <h2 className="text-base font-extrabold text-slate-900">Ranking Snajperów</h2>
-                  <p className="text-xs text-slate-400 font-medium">Sezon Zima 2026</p>
+                  <p className="text-xs text-slate-400 font-medium">Sezon "ZIMA" 2026</p>
                 </div>
               </div>
             </div>

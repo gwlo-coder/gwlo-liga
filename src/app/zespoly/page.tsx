@@ -49,10 +49,10 @@ export default function ZespolyPage() {
               <Users className="w-3.5 h-3.5" /> Kluby GWLO
             </div>
             <h1 className="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">
-              Zespoły Sezonu Zima 2026
+              Zespoły Sezonu "ZIMA" 2026
             </h1>
             <p className="text-xs text-slate-500 font-medium max-w-2xl">
-              Lista wszystkich oficjalnych drużyn biorących udział w rozgrywkach Gorzowskiej Ligi Osiedlowej.
+              Lista wszystkich oficjalnych drużyn biorących udział w rozgrywkach.
             </p>
           </div>
 

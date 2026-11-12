@@ -28,7 +28,7 @@ export default function HeroBanner() {
             Osiedlowa <span className="text-sky-400">GWLO</span>
           </h1>
           <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-xl">
-            Oficjalne centrum amatorskich rozgrywek piłkarskich. Śledź statystyki, aktualną tabelę oraz mecze na żywo.
+            Oficjalna strona Gorzowskiej Ligi Osiedlowej, największych amatorskich rozgrywek w regionie! Tutaj znajdziesz wszystko co dotyczy naszej ligi.
           </p>
         </div>
 
@@ -43,8 +43,8 @@ export default function HeroBanner() {
             <div className="text-xs text-slate-300 font-medium mt-0.5">Zawodników</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-sky-400">LIVE</div>
-            <div className="text-xs text-slate-300 font-medium mt-0.5">Wyniki na żywo</div>
+            <div className="text-xl font-bold text-sky-400">32</div>
+            <div className="text-xs text-slate-300 font-medium mt-0.5">Mecze w sezonie</div>
           </div>
         </div>
 

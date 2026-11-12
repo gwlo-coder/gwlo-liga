@@ -21,13 +21,13 @@ export default function RegulaminPage() {
           </div>
           <div>
             <span className="text-[10px] font-bold text-sky-600 uppercase tracking-widest bg-sky-50 border border-sky-100 px-3 py-1 rounded-md">
-              Oficjalne zasady GLO
+              Oficjalne zasady Gorzowskiej Ligi Osiedlowej
             </span>
             <h1 className="text-3xl lg:text-4xl font-black text-slate-900 tracking-tight mt-3">
               Regulamin Rozgrywek
             </h1>
             <p className="text-xs text-slate-500 font-semibold mt-2">
-              Gorzowska Liga Osiedlowa (GLO / GWLO) • Obowiązuje od 05.07.2026 r.
+              Gorzowska Liga Osiedlowa • Obowiązuje od 12.11.2026 r.
             </p>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function RegulaminPage() {
                   <li><strong>1.1</strong> Organizatorem rozgrywek Gorzowskiej Ligi Osiedlowej (zwanej dalej „GLO”, “GWLO” lub „Ligą”) jest STOWARZYSZENIE AMATORSKICH AKTYWNOŚCI SPORTOWYCH z siedzibą w Gorzowie Wielkopolskim.</li>
                   <li><strong>1.2</strong> Na rozgrywki GLO składają się lokalne rozgrywki ligowe piłki nożnej w formule maksymalnie sześcioosobowej.</li>
                   <li><strong>1.3</strong> W lokalnych rozgrywkach ligowych uczestniczą zespoły zgłoszone do gry podczas oficjalnych zapisów.</li>
-                  <li><strong>1.4</strong> Rozgrywki odbywają się na terenie miasta Gorzów Wielkopolski (województwo lubuskie).</li>
+                  <li><strong>1.4</strong> Rozgrywki odbywają się na terenie miasta Gorzów Wielkopolski (województwo lubuskie) na boisku Szkoły Podstawowej nr. 21 która znajduje się przy ul. Taczaka 1.</li>
                 </ul>
               </div>
 
@@ -107,7 +107,7 @@ export default function RegulaminPage() {
                   <li><strong>4.3</strong> Każdy zespół musi spełniać następujące wymogi dotyczące kadry zespołu:
                     <ul className="list-decimal pl-5 mt-1 space-y-1">
                       <li>Skład zespołu musi liczyć minimum 6 zawodników.</li>
-                      <li>Maksymalna liczba zawodników w zespole wynosi 24 (do maksymalnej liczby zawodników nie wlicza się zawodników przebywających na wypożyczeniu).</li>
+                      <li>Maksymalna liczba zawodników w zespole wynosi 20</li>
                     </ul>
                   </li>
                   <li><strong>4.4</strong> Każdy zespół musi posiadać Kapitana, który pełni formalną funkcję opiekuna zespołu.</li>
@@ -120,7 +120,6 @@ export default function RegulaminPage() {
                   <li><strong>5.1</strong> Do obowiązków Kapitana należy w szczególności:
                     <ul className="list-decimal pl-5 mt-1 space-y-1">
                       <li>Zgłoszenie zespołu do rozgrywek.</li>
-                      <li>Umawianie meczów w ramach dedykowanych kanałów rozgrywek.</li>
                       <li>Ustalenie końcowego wyniku bezpośrednio na boisku po zakończeniu spotkania z kapitanem rywali (oraz ewentualnie z Osobą Zaufaną).</li>
                       <li>Zarządzanie składem i zgłaszanie transferów.</li>
                       <li>Niezwłoczne zatwierdzenie końcowego wyniku na platformie Discord.</li>
@@ -165,15 +164,9 @@ export default function RegulaminPage() {
                 <ul className="list-disc pl-5 mt-2 space-y-1.5">
                   <li><strong>8.1</strong> Zawodnik może zmienić barwy klubowe (dokonać transferu) wyłącznie podczas oficjalnie trwającego okienka transferowego (szczegóły w kategorii "Transfery" na serwerze Discord).</li>
                   <li><strong>8.2</strong> W trakcie jednego sezonu zawodnik ma prawo do dokonania maksymalnie jednego transferu do innego klubu.</li>
-                  <li><strong>8.3</strong> Dopuszcza się instytucję wypożyczenia zawodnika na następujących zasadach:
-                    <ul className="list-decimal pl-5 mt-1 space-y-1">
-                      <li>Jeden zawodnik może zostać wypożyczony maksymalnie raz na 3 kolejki ligowe.</li>
-                      <li>Dany klub (drużyna) może skorzystać z wypożyczenia maksymalnie 2 zawodników w przeciągu 3 kolejnych kolejek ligowych.</li>
-                      <li>W trakcie całego sezonu zawodnik ma prawo być wypożyczany do różnych zespołów, o ile spełnione są powyższe limity i terminy.</li>
-                    </ul>
-                  </li>
-                  <li><strong>8.4</strong> Wszystkie transfery oraz wypożyczenia należy bezwzględnie zgłosić na odpowiednim kanale Discord (#transfery).</li>
-                  <li><strong>8.5</strong> Złamanie któregokolwiek z punktów dotyczących przynależności lub transferów skutkować będzie wykluczeniem zawodnika z rozgrywek na okres wyznaczony przez Administratora oraz ewentualną karą walkoweru dla zespołu.</li>
+                  
+                  <li><strong>8.3</strong> Wszystkie transfery należy bezwzględnie zgłosić na odpowiednim kanale Discord (#transfery).</li>
+                  <li><strong>8.4</strong> Złamanie któregokolwiek z punktów dotyczących przynależności lub transferów skutkować będzie wykluczeniem zawodnika z rozgrywek na okres wyznaczony przez Administratora oraz ewentualną karą walkoweru dla zespołu.</li>
                 </ul>
               </div>
             </div>
@@ -224,7 +217,6 @@ export default function RegulaminPage() {
                   <li><strong>11.1</strong> Zespoły, które zajmą I miejsce w swoich klasach rozgrywkowych na koniec sezonu, otrzymują oficjalne tytuły:
                     <ul className="list-decimal pl-5 mt-1 space-y-1">
                       <li>Klasa rozgrywkowa Liga Plus: Mistrz Ligi Plus GLO</li>
-                      <li>Klasa rozgrywkowa 1. liga: Mistrz 1. ligi GLO</li>
                     </ul>
                   </li>
                 </ul>
@@ -233,26 +225,14 @@ export default function RegulaminPage() {
               <div className="pt-2">
                 <strong className="text-slate-900 font-bold">Art. 12. Terminarze i aktywność drużyn</strong>
                 <ul className="list-disc pl-5 mt-2 space-y-1.5">
-                  <li><strong>12.1</strong> Każda kolejka ligowa (tydzień rozgrywkowy) trwa od poniedziałku do niedzieli. Mecze danej kolejki należy rozegrać w terminie podstawowym (do wskazanego dnia). Dopuszcza się maksymalną obsuwę o 3 dni (do środy następnego tygodnia), o ile przełożony mecz nie koliduje z rozgrywaniem spotkań kolejnej kolejki.</li>
-                  <li><strong>12.2</strong> Obowiązuje elastyczny termin rozegrania spotkań, ustalany autonomicznie przez Kapitanów.</li>
-                  <li><strong>12.3</strong> Minimalny odstęp pomiędzy meczami rozgrywanymi na tym samym boisku w tym samym dniu musi wynosić minimum 75 minut (1 godzina 15 minut).</li>
-                  <li><strong>12.4</strong> Każde spotkanie musi zostać oficjalnie ogłoszone na kanale Discord (#zatwierdzone-terminy) na minimum 2 godziny przed planowanym rozpoczęciem. Wiadomość musi zawierać:
-                    <ul className="list-decimal pl-5 mt-1 space-y-1">
-                      <li>Dokładne wskazanie boiska,</li>
-                      <li>Datę oraz godzinę rozpoczęcia,</li>
-                      <li>Nazwy obu rywalizujących drużyn.</li>
-                    </ul>
-                  </li>
-                  <li><strong>12.5</strong> Edytowane wiadomości na Discordzie nie będą brane pod uwagę. W przypadku zmiany terminu lub jakichkolwiek szczegółów meczu, należy wysłać całkowicie nową wiadomość.</li>
+                  <li><strong>12.1</strong> Obowiązuje stały termin rozegrania spotkań, ustalany przez organizatora rozgrywek przed sezonem. (Wyjątkiem jest ostatnia finałowa kolejka)</li>
                 </ul>
               </div>
 
               <div className="pt-2">
                 <strong className="text-slate-900 font-bold">Art. 13. Walkowery z tytułu braku aktywności</strong>
                 <ul className="list-disc pl-5 mt-2 space-y-1.5">
-                  <li><strong>13.1</strong> Brak odpowiedzi (odzewu) ze strony drugiego Kapitana na próbę ustalenia terminu meczu przez 48 godzin daje kapitanowi zespołu oczekującego prawo do zgłoszenia tego faktu do administracji (wymagany zrzut ekranu jako dowód) z wnioskiem o przyznanie walkowera. Walkower nie jest przyznawany automatycznie – ostateczną decyzję o losach meczu oraz ewentualnym wyznaczeniu sztywnego terminu spotkania podejmuje Administrator, stawiając na pierwszym miejscu sportową rywalizację i rozegranie meczu.</li>
-                  <li><strong>13.2</strong> Jeżeli Kapitanowie obu drużyn podjęli próbę kontaktu, ale z obiektywnych przyczyn mecz nie odbył się w wyznaczonym terminie wraz z dopuszczalną obsuwą (maksymalnie do środy), spotkanie zostaje zakończone obustronnym wynikiem 0:0.</li>
-                  <li><strong>13.3</strong> Wynik 0:0 z tytułu obustronnego braku rozegrania meczu oznacza brak przyznania punktów którejkolwiek z drużyn i zostaje wpisany automatycznie, bez konieczności podawania przyczyny.</li>
+                  <li><strong>13.1</strong> Wynik 0:0 z tytułu obustronnego braku rozegrania meczu oznacza brak przyznania punktów którejkolwiek z drużyn i zostaje wpisany automatycznie, bez konieczności podawania przyczyny.</li>
                 </ul>
               </div>
 
@@ -262,19 +242,18 @@ export default function RegulaminPage() {
                   <li><strong>14.1</strong> Oficjalnym organizatorem spotkania ligowego jest drużyna wytypowana w terminarzu jako gospodarz.</li>
                   <li><strong>14.2</strong> Przed rozegraniem spotkania Kapitanowie obu zespołów mają obowiązek wspólnie ustalić:
                     <ul className="list-decimal pl-5 mt-1 space-y-1">
-                      <li>Termin i miejsce (boisko) rozegrania meczu,</li>
                       <li>Kolorystykę koszulek (w celu uniknięcia zlania się barw),</li>
                       <li>System czasowy rozgrywania meczu (zgodnie z Art. 15),</li>
                       <li>Bramkarz każdej drużyny musi wyróżniać się kolorem stroju na tle zawodników z pola obu zespołów.</li>
                     </ul>
                   </li>
-                  <li><strong>14.3</strong> Odwołanie lub przełożenie spotkania może nastąpić najpóźniej na 24 godziny przed planowanym rozpoczęciem meczu.</li>
-                  <li><strong>14.4</strong> Wyjątek stanowią nagłe, drastyczne warunki pogodowe (np. burza, nawałnica, intensywny deszcz uniemożliwiający grę, oblodzenie boiska). W takim przypadku, jeśli zagrożone jest bezpieczeństwo uczestników, mecz może zostać odwołany w dowolnym momencie.</li>
-                  <li><strong>14.5</strong> Zespół, który nie stawi się na umówiony i zatwierdzony mecz, zostaje ukarany walkowerem.</li>
-                  <li><strong>14.6</strong> Wynik meczu zweryfikowanego jako walkower wynosi 12:0 na korzyść drużyny poszkodowanej.</li>
-                  <li><strong>14.7</strong> Kapitanowie obu zespołów są bezwzględnie zobowiązani do opublikowania pełnej kadry meczowej na dedykowanym kanale Discord (#kadra) najpóźniej na 15 minut przed zaplanowaną godziną rozpoczęcia meczu.</li>
-                  <li><strong>14.8</strong> Jakiekolwiek edytowanie wysłanej wiadomości z kadrą lub dopisywanie zawodników po wyznaczonym czasie (15 minut przed meczem) jest niedozwolone i nie będzie brane pod uwagę.</li>
-                  <li><strong>14.9</strong> Niezgłoszenie kadry w terminie, samowolne edytowanie wpisu lub wystawienie w meczu zawodnika nieuprawnionego (np. niezgłoszonego, zawieszonego lub niebędącego na liście kadry na ten mecz) skutkuje natychmiastową weryfikacją spotkania jako walkower na korzyść drużyny przeciwnej.</li>
+                  
+                  <li><strong>14.3</strong> Wyjątek stanowią nagłe, drastyczne warunki pogodowe (np. burza, nawałnica, intensywny deszcz uniemożliwiający grę, oblodzenie boiska). W takim przypadku, jeśli zagrożone jest bezpieczeństwo uczestników, mecz może zostać odwołany w dowolnym momencie.</li>
+                  <li><strong>14.4</strong> Zespół, który nie stawi się na umówiony i zatwierdzony mecz, zostaje ukarany walkowerem.</li>
+                  <li><strong>14.5</strong> Wynik meczu zweryfikowanego jako walkower wynosi 12:0 na korzyść drużyny poszkodowanej.</li>
+                  <li><strong>14.6</strong> Kapitanowie obu zespołów są bezwzględnie zobowiązani do opublikowania pełnej kadry meczowej na dedykowanym kanale Discord (#kadra) najpóźniej na 5 minut przed zaplanowaną godziną rozpoczęcia meczu.</li>
+                  <li><strong>14.7</strong> Jakiekolwiek edytowanie wysłanej wiadomości z kadrą lub dopisywanie zawodników po wyznaczonym czasie (5 minut przed meczem) jest niedozwolone i nie będzie brane pod uwagę.</li>
+                  <li><strong>14.8</strong> Niezgłoszenie kadry w terminie, samowolne edytowanie wpisu lub wystawienie w meczu zawodnika nieuprawnionego (np. niezgłoszonego, zawieszonego lub niebędącego na liście kadry na ten mecz) skutkuje natychmiastową weryfikacją spotkania jako walkower na korzyść drużyny przeciwnej.</li>
                 </ul>
               </div>
             </div>
@@ -306,7 +285,6 @@ export default function RegulaminPage() {
                       <li>Wyraźne linie wyznaczające granice pola gry.</li>
                     </ul>
                   </li>
-                  <li><strong>15.9</strong> Za zgodą obu zainteresowanych drużyn dopuszcza się rozegranie meczu na obiektach zlokalizowanych poza samym Gorzowem Wielkopolskim (np. Wawrów, Ciecierzyce, Deszczno itp.).</li>
                 </ul>
               </div>
             </div>

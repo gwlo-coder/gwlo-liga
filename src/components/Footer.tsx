@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-lg tracking-tight text-white leading-none">
-                  GWLO <span className="text-sky-500 text-xs">PRO</span>
+                  gwlo.eu
                 </span>
                 <span className="text-[10px] tracking-wide text-slate-400 font-medium mt-1">
                   Gorzowska Liga Osiedlowa
@@ -29,7 +29,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed font-normal">
-              Oficjalne centrum amatorskich rozgrywek piłkarskich w Gorzowie Wielkopolskim. Rywalizacja, emocje i pasja na osiedlowych orlikach.
+              Oficjalna strona największych amatorskich rozgrywek w regionie!
             </p>
           </div>
 
@@ -41,23 +41,23 @@ export default function Footer() {
                 <Link href="/" className="hover:text-sky-400 transition-colors">Strona główna</Link>
               </li>
               <li>
-                <Link href="/terminarz" className="hover:text-sky-400 transition-colors">Terminarz i Mecze</Link>
+                <Link href="/terminarz" className="hover:text-sky-400 transition-colors">Terminarz</Link>
               </li>
               <li>
                 <Link href="/tabela" className="hover:text-sky-400 transition-colors">Tabela ligowa</Link>
               </li>
               <li>
-                <Link href="/zespoly" className="hover:text-sky-400 transition-colors">Zespoły i Składy</Link>
+                <Link href="/zespoly" className="hover:text-sky-400 transition-colors">Zespoły</Link>
               </li>
               <li>
-                <Link href="/statystyki" className="hover:text-sky-400 transition-colors">Statystyki i Strzelci</Link>
+                <Link href="/statystyki" className="hover:text-sky-400 transition-colors">Statystyki</Link>
               </li>
             </ul>
           </div>
 
           {/* Kolumna 3: Dokumenty */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold text-white uppercase tracking-widest">Regulamin i Prawo</h4>
+            <h4 className="text-xs font-bold text-white uppercase tracking-widest">Regulamin i kontakt</h4>
             <ul className="space-y-2.5 text-xs font-medium text-slate-400">
               <li>
                 <Link href="/regulamin" className="hover:text-sky-400 transition-colors flex items-center gap-2">
@@ -71,6 +71,11 @@ export default function Footer() {
                   <span>Kontakt z organizatorem</span>
                 </Link>
               </li>
+              <li className="pt-3 border-t border-slate-800/80 text-[11px] text-slate-500 space-y-0.5">
+                <span className="block text-slate-400 font-medium">Organizatorem rozgrywek jest:</span>
+                <span className="block font-semibold text-slate-300">Stowarzyszenie Amatorskich Aktywności Sportowych</span>
+                <span className="block">KRS: 0001227188</span>
+              </li>
             </ul>
           </div>
 
@@ -79,12 +84,12 @@ export default function Footer() {
             <h4 className="text-xs font-bold text-white uppercase tracking-widest">Lokalizacja</h4>
             <div className="flex items-start gap-2.5 text-xs text-slate-400">
               <MapPin className="w-4 h-4 text-sky-500 shrink-0 mt-0.5" />
-              <span>Orlik GWLO, ul. Parkowa / Osiedlowa<br />66-400 Gorzów Wielkopolski</span>
+              <span>Orlik SP21, ul. Taczaka 1<br />66-400 Gorzów Wielkopolski</span>
             </div>
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 text-[11px] font-semibold">
                 <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-                Sezon Zima 2026 w toku
+                Sezon "ZIMA" 2026 w toku
               </span>
             </div>
           </div>
@@ -93,7 +98,7 @@ export default function Footer() {
 
         {/* Dolna belka (Copyright + powrót do góry) */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© 2026 Gorzowska Liga Osiedlowa (GWLO). Wszelkie prawa zastrzeżone.</p>
+          <p>© 2026 Gorzowska Liga Osiedlowa. Wszelkie prawa zastrzeżone.</p>
           
           <button 
             onClick={scrollToTop}

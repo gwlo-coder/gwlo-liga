@@ -56,7 +56,7 @@ export default function TabelaPage() {
               Tabela Ligowa GWLO
             </h1>
             <p className="text-xs text-slate-500 font-medium max-w-2xl">
-              Oficjalna klasyfikacja Gorzowskiej Ligi Osiedlowej (Sezon Zima 2026). Pozycja w tabeli aktualizuje się automatycznie po zakończeniu każdego meczu.
+              Oficjalna klasyfikacja Gorzowskiej Ligi Osiedlowej.
             </p>
           </div>
 

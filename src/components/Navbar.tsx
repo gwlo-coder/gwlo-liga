@@ -104,25 +104,22 @@ export default function Navbar() {
       <div className="max-w-[1750px] mx-auto px-8 lg:px-14">
         <div className="flex items-center justify-between h-20 py-3 gap-8">
           
-          {/* Logo GWLO PRO */}
-          <Link href="/" className="flex items-center gap-3.5 group shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-sky-600 flex items-center justify-center font-bold text-white text-lg group-hover:bg-sky-700 transition-colors shadow-sm">
-              GW
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-xl tracking-tight text-slate-900 leading-none">
-                  GWLO
-                </span>
-                <span className="text-sky-600 text-[10px] font-bold tracking-widest uppercase bg-sky-50 px-1.5 py-0.5 rounded border border-sky-100">
-                  PRO
-                </span>
-              </div>
-              <span className="text-[11px] tracking-wide text-slate-500 font-medium mt-1">
-                Gorzowska Liga Osiedlowa
-              </span>
-            </div>
-          </Link>
+          {/* Logo GWLO z pliku */}
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <img 
+            src="/teams/logo.png" 
+            alt="GWLO Logo" 
+            className="w-10 h-10 object-contain rounded-xl group-hover:scale-105 transition-transform" 
+          />
+          <div className="flex flex-col">
+            <span className="font-extrabold text-xl tracking-tight text-slate-900 leading-none">
+              GWLO
+            </span>
+            <span className="text-[11px] tracking-wide text-slate-500 font-medium mt-1">
+              Gorzowska Liga Osiedlowa
+            </span>
+          </div>
+        </Link>
 
           {/* Wyszukiwarka + Regulamin */}
           <div className="flex items-center gap-6">

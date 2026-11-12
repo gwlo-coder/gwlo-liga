@@ -71,13 +71,13 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="space-y-4">
+        {/* <section className="space-y-4">
           <div className="flex items-center gap-2.5 pb-2">
             <Newspaper className="w-5 h-5 text-sky-600" />
             <h2 className="text-lg font-extrabold text-slate-900 tracking-tight">Aktualności Ligowe</h2>
           </div>
           <NewsSection />
-        </section>
+        </section> */}
       </main>
 
       <Footer />

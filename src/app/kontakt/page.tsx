@@ -1,10 +1,49 @@
 'use client'
 
+import { useState } from 'react'
+import { supabase } from '@/lib/supabaseClient'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { Mail, Phone, MapPin, Send, MessageSquare, Trophy } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, MessageSquare, Trophy, CheckCircle2, AlertCircle } from 'lucide-react'
 
 export default function KontaktPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+    setSuccess(false)
+
+    const { error: supabaseError } = await supabase
+      .from('contact_messages')
+      .insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        }
+      ])
+
+    setLoading(false)
+
+    if (supabaseError) {
+      setError('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.')
+    } else {
+      setSuccess(true)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col justify-between">
       <div>
@@ -27,7 +66,7 @@ export default function KontaktPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
             
-            {/* Kafelki informacyjne (Lewa kolumna - wyrównana idealnie do dołu) */}
+            {/* Kafelki informacyjne */}
             <div className="lg:col-span-1 flex flex-col justify-between space-y-4 lg:space-y-0">
               
               <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm flex items-center gap-4">
@@ -45,8 +84,8 @@ export default function KontaktPage() {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">Infolinia / Kapitanowie</h3>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">+48 000 000 000</p>
+                  <h3 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">Infolinia</h3>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">+48 797 109 555</p>
                 </div>
               </div>
 
@@ -56,11 +95,10 @@ export default function KontaktPage() {
                 </div>
                 <div>
                   <h3 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">Adres E-mail</h3>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">kontakt@gwlo-pro.pl</p>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">kontakt@gwlo.eu</p>
                 </div>
               </div>
 
-              {/* Karta z pełną nazwą stowarzyszenia */}
               <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-md space-y-2.5">
                 <div className="flex items-center gap-2 text-sky-400 font-bold text-xs uppercase tracking-wider">
                   <Trophy className="w-4 h-4 shrink-0" />
@@ -73,7 +111,7 @@ export default function KontaktPage() {
 
             </div>
 
-            {/* Formularz kontaktowy (Prawa kolumna) */}
+            {/* Formularz kontaktowy */}
             <div className="bg-white border border-slate-200/80 rounded-3xl p-8 shadow-sm lg:col-span-2 space-y-6 flex flex-col justify-between">
               
               <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
@@ -86,13 +124,29 @@ export default function KontaktPage() {
                 </div>
               </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); alert('Wiadomość została wysłana!'); }} className="space-y-4">
+              {success && (
+                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Wiadomość została pomyślnie wysłana do organizatora!</span>
+                </div>
+              )}
+
+              {error && (
+                <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Twoje Imię / Drużyna</label>
+                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Twoje Imię</label>
                     <input 
                       type="text" 
-                      placeholder="np. Jan Kowalski (FC Bogdanka)" 
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="np. Jan Kowalski" 
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white transition-all font-medium"
                       required
                     />
@@ -101,6 +155,8 @@ export default function KontaktPage() {
                     <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Adres E-mail</label>
                     <input 
                       type="email" 
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="adres@email.com" 
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white transition-all font-medium"
                       required
@@ -112,6 +168,8 @@ export default function KontaktPage() {
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Temat wiadomości</label>
                   <input 
                     type="text" 
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="np. Zgłoszenie nowego zawodnika / Pytanie o terminarz" 
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white transition-all font-medium"
                     required
@@ -122,6 +180,8 @@ export default function KontaktPage() {
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Treść wiadomości</label>
                   <textarea 
                     rows={5}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Wpisz treść swojej wiadomości..." 
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white transition-all font-medium resize-none"
                     required
@@ -130,9 +190,10 @@ export default function KontaktPage() {
 
                 <button 
                   type="submit"
-                  className="w-full bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs uppercase tracking-wider py-4 rounded-xl transition-colors shadow-md shadow-sky-600/20 flex items-center justify-center gap-2 cursor-pointer"
+                  disabled={loading}
+                  className="w-full bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs uppercase tracking-wider py-4 rounded-xl transition-colors shadow-md shadow-sky-600/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4" /> Wyślij wiadomość
+                  <Send className="w-4 h-4" /> {loading ? 'Wysyłanie...' : 'Wyślij wiadomość'}
                 </button>
               </form>
 
