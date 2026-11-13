@@ -98,7 +98,7 @@ export default function Navbar() {
   const hasResults = teamResults.length > 0 || playerResults.length > 0
 
   return (
-    <header className="w-full bg-white text-slate-800 border-b border-slate-200/80 sticky top-0 z-50 shadow-sm overflow-x-hidden">
+    <header className="w-full bg-white text-slate-800 border-b border-slate-200/80 sticky top-0 z-50 shadow-sm">
       
       {/* GŁÓWNY NAGŁÓWEK */}
       <div className="max-w-[1750px] mx-auto px-4 sm:px-8 lg:px-14">
@@ -140,7 +140,7 @@ export default function Navbar() {
 
               {/* Okienko podpowiedzi z wynikami wyszukiwania */}
               {isSearchOpen && hasResults && (
-                <div className="absolute top-full mt-2 left-0 right-0 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-50 max-h-80 overflow-y-auto">
+                <div className="absolute left-0 right-0 top-[calc(100%+12px)] bg-white border border-slate-200 rounded-xl shadow-2xl overflow-hidden z-[99999] max-h-80 overflow-y-auto">
                   
                   {teamResults.length > 0 && (
                     <div>
