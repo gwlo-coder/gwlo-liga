@@ -28,11 +28,24 @@ export default function TabelaPage() {
       const { data, error } = await supabase
         .from('teams')
         .select('*')
-        .order('points', { ascending: false })
-        .order('goals_scored', { ascending: false })
 
       if (!error && data) {
-        setTeams(data as Team[])
+        const sortedTeams = (data as Team[]).sort((a, b) => {
+          // 1. Punkty (malejąco)
+          if (b.points !== a.points) {
+            return b.points - a.points
+          }
+          // 2. Bilans bramek (malejąco)
+          const diffA = a.goals_scored - a.goals_conceded
+          const diffB = b.goals_scored - b.goals_conceded
+          if (diffB !== diffA) {
+            return diffB - diffA
+          }
+          // 3. Więcej strzelonych bramek (malejąco)
+          return b.goals_scored - a.goals_scored
+        })
+
+        setTeams(sortedTeams)
       }
       setLoading(false)
     }
