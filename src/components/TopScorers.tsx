@@ -28,7 +28,6 @@ export default function TopScorers() {
 
   useEffect(() => {
     async function fetchTopScorers() {
-      // Odpytujemy tabelę player_seasons, z której biorą się gole
       const { data, error } = await supabase
         .from('player_seasons')
         .select(`
@@ -43,7 +42,7 @@ export default function TopScorers() {
           )
         `)
         .order('goals', { ascending: false })
-        .limit(3)
+        .limit(5)
 
       if (!error && data) {
         setScorers(data)
@@ -74,33 +73,33 @@ export default function TopScorers() {
   const getBadgeStyle = (index: number) => {
     switch (index) {
       case 0:
-        return 'bg-amber-100 text-amber-800'
+        return 'bg-amber-100 text-amber-800 font-black'
       case 1:
-        return 'bg-slate-200 text-slate-700'
+        return 'bg-sky-50 text-sky-700 font-bold'
       case 2:
-        return 'bg-amber-700/10 text-amber-900'
+        return 'bg-amber-700/10 text-amber-900 font-bold'
       default:
-        return 'bg-slate-100 text-slate-600'
+        return 'bg-slate-100 text-slate-500 font-semibold'
     }
   }
 
   return (
     <div className="bg-white border border-slate-200/80 rounded-3xl p-6 lg:p-8 shadow-sm flex flex-col justify-between h-full">
-      <div className="space-y-6">
+      <div className="space-y-4">
         
         {/* Nagłówek sekcji */}
-        <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
+        <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
           <div className="p-2.5 rounded-xl bg-amber-50 text-amber-600 border border-amber-100">
             <Flame className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-base font-extrabold text-slate-900">Najlepsi Strzelcy</h2>
+            <h2 className="text-base font-extrabold text-slate-900 leading-tight">Najlepsi Strzelcy</h2>
             <p className="text-xs text-slate-400 font-medium">Klasyfikacja o Złoty But GWLO</p>
           </div>
         </div>
 
-        {/* Lista strzelców z bazy */}
-        <div className="space-y-3">
+        {/* Lista strzelców zacieśniona, żeby idealnie pasowała do lewej tabeli */}
+        <div className="space-y-1.5">
           {loading ? (
             <div className="text-center py-6 text-xs text-slate-400 font-medium">Ładowanie strzelców...</div>
           ) : scorers.length === 0 ? (
@@ -113,19 +112,19 @@ export default function TopScorers() {
               return (
                 <div 
                   key={item.id} 
-                  className="flex items-center justify-between p-3 rounded-2xl bg-slate-50/80 border border-slate-100"
+                  className="flex items-center justify-between px-3.5 py-[9px] rounded-2xl bg-slate-50/80 border border-slate-100 hover:bg-slate-50 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`w-6 h-6 rounded-lg text-xs font-black flex items-center justify-center ${getBadgeStyle(index)}`}>
+                    <span className={`w-6 h-6 rounded-lg text-xs flex items-center justify-center ${getBadgeStyle(index)}`}>
                       {index + 1}
                     </span>
                     <div>
-                      <p className="text-xs font-bold text-slate-900">{playerName}</p>
+                      <p className="text-xs font-bold text-slate-900 leading-tight">{playerName}</p>
                       <p className="text-[10px] text-slate-400 font-medium">{teamName}</p>
                     </div>
                   </div>
-                  <span className="text-xs font-black text-slate-900 bg-white px-2.5 py-1 rounded-xl border border-slate-200/60">
-                    {item.goals} bramek
+                  <span className="text-xs font-black text-slate-900 bg-white px-2.5 py-1 rounded-xl border border-slate-200/60 shadow-2xs">
+                    {item.goals} {item.goals === 1 ? 'bramka' : item.goals < 5 ? 'bramki' : 'bramek'}
                   </span>
                 </div>
               )
@@ -136,7 +135,7 @@ export default function TopScorers() {
       </div>
 
       {/* Stopka z przyciskiem */}
-      <div className="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between text-xs font-medium">
+      <div className="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium">
         <span className="text-slate-400">Klasyfikacja aktualizowana po meczach</span>
         <Link 
           href="/statystyki" 

@@ -47,6 +47,7 @@ export default function HomeClient() {
       <main className="max-w-[1400px] mx-auto px-6 lg:px-12 py-10 space-y-12">
         <section>
           <HeroBanner />
+          
         </section>
 
         <section className="space-y-4">
