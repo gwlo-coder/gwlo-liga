@@ -9,6 +9,7 @@ import TopScorers from '@/components/TopScorers'
 import UpcomingMatch from '@/components/UpcomingMatch'
 import RecentResults from '@/components/RecentResults'
 import NewsSection from '@/components/NewsSection'
+import PatronBanner from '@/components/PatronBanner'
 import Footer from '@/components/Footer'
 import { Calendar, Trophy, Newspaper } from 'lucide-react'
 
@@ -79,6 +80,10 @@ export default function HomeClient() {
           </div>
           <NewsSection />
         </section> */}
+
+        <section>
+          <PatronBanner />
+        </section>
       </main>
 
       <Footer />
